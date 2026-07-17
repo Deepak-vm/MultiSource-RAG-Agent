@@ -77,6 +77,8 @@ The agent was evaluated using a structured evaluation suite of **20 labeled test
 ### 1. Clone & Setup Environment
 ```bash
 cd Multi-SourceRAG
+# Create virtual environment if it doesn't exist:
+# python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
@@ -98,9 +100,9 @@ python check_all.py
 ```
 
 ### 4. Run the Interactive Notebook
-Start the demo notebook to visualize the LangGraph topology and test interactively:
+Start the main notebook to visualize the LangGraph topology and test interactively:
 ```bash
-jupyter notebook notebooks/demo.ipynb
+jupyter notebook notebooks/main.ipynb
 ```
 
 ### 5. Execute the Evaluation Harness
@@ -109,8 +111,8 @@ Run the evaluation runner:
 # Run first 5 queries (Quick Smoke Test)
 python eval/run_eval.py --quick --delay 5
 
-# Run full 20-query evaluation
-python eval/run_eval.py --label groq_baseline --delay 5
+# Run full 20-query evaluation (using rate-limit-safe 20s delay)
+python eval/run_eval.py --label groq_baseline --delay 20
 ```
 
 ---
@@ -133,7 +135,7 @@ Multi-SourceRAG/
 │   └── run_eval.py         # Evaluation harness with rate-limit compliance
 ├── results/                # Evaluation output JSON files
 ├── notebooks/
-│   └── demo.ipynb          # Interactive visualization & testing notebook
+│   └── main.ipynb          # Interactive visualization & testing notebook
 └── faiss_index/            # Local vector database index directory
 ```
 
