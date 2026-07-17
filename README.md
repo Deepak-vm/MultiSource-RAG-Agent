@@ -4,7 +4,7 @@
 
 ---
 
-## 📊 Performance Results (Groq Llama 3.3 70B Baseline)
+##  Performance Results (Groq Llama 3.3 70B Baseline)
 
 The agent was evaluated using a structured evaluation suite of **20 labeled test cases** covering Wikipedia, Arxiv, LangSmith documentation, and direct conversation.
 
