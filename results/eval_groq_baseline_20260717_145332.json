@@ -1,0 +1,474 @@
+{
+  "run_label": "groq_baseline",
+  "timestamp": "2026-07-17T14:53:32.167754",
+  "overall_accuracy": 1.0,
+  "correct": 20,
+  "total": 20,
+  "per_tool_metrics": {
+    "wikipedia": {
+      "correct": 5,
+      "total": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "avg_latency_ms": 9627.253163399291,
+      "avg_cost_usd": 0.00029895
+    },
+    "arxiv": {
+      "correct": 5,
+      "total": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "avg_latency_ms": 2829.072986000392,
+      "avg_cost_usd": 0.00029895
+    },
+    "langsmith_search": {
+      "correct": 5,
+      "total": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "avg_latency_ms": 3791.641958800392,
+      "avg_cost_usd": 0.00029895
+    },
+    "direct_answer": {
+      "correct": 5,
+      "total": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "avg_latency_ms": 1683.3071152002958,
+      "avg_cost_usd": 0.00029895
+    }
+  },
+  "avg_retrieval_hit_rate": 0.22666666666666666,
+  "avg_latency_ms": 4482.818805850093,
+  "avg_cost_usd": 0.00029895,
+  "total_cost_usd": 0.005979,
+  "results": [
+    {
+      "query": "Who is Alan Turing?",
+      "expected_tool": "wikipedia",
+      "predicted_tool": "wikipedia",
+      "correct": true,
+      "total_latency_ms": 8451.996386000246,
+      "total_cost_usd": 0.00029895,
+      "answer": "Alan Turing was a renowned English mathematician, computer scientist, logician, cryptanalyst, philosopher, and theoretical biologist. He is best known for his significant contributions to the development of theoretical computer science. Born on June 23, 1912, Turing played a crucial role in shaping the foundation of modern computer science.\n\nTuring's most notable achievement is the formalization of the concepts of algorithm and computation through the invention of the Turing machine. This model ",
+      "tool_output_chars": 500,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.75,
+        "hits": [
+          "mathematician",
+          "computer",
+          "Turing"
+        ],
+        "misses": [
+          "computing"
+        ]
+      },
+      "notes": "Famous person \u2014 pure encyclopedia entry"
+    },
+    {
+      "query": "What is the theory of relativity?",
+      "expected_tool": "wikipedia",
+      "predicted_tool": "wikipedia",
+      "correct": true,
+      "total_latency_ms": 11124.126873999558,
+      "total_cost_usd": 0.00029895,
+      "answer": "The theory of relativity, specifically the special theory of relativity, is a scientific theory that describes the relationship between space and time. It was introduced by Albert Einstein in his 1905 paper, \"On the Electrodynamics of Moving Bodies\". This theory is based on two fundamental postulates that aim to explain how the laws of physics are universal and unchanging, regardless of the observer's frame of reference.\n\nThe first postulate, known as the principle of relativity, states that the",
+      "tool_output_chars": 500,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.4,
+        "hits": [
+          "Einstein",
+          "relativity"
+        ],
+        "misses": [
+          "mass",
+          "energy",
+          "spacetime"
+        ]
+      },
+      "notes": "Scientific concept with encyclopedic explanation"
+    },
+    {
+      "query": "Tell me about the French Revolution",
+      "expected_tool": "wikipedia",
+      "predicted_tool": "wikipedia",
+      "correct": true,
+      "total_latency_ms": 9486.317389999385,
+      "total_cost_usd": 0.00029895,
+      "answer": "The retrieved information does not provide any details about the French Revolution. Based on my own knowledge, the French Revolution was a significant historical event that took place from 1789 to 1799. It was a period of radical social and political upheaval in France, marked by the overthrow of the monarchy and the establishment of the First French Republic.\n\nThe Revolution began with the Storming of the Bastille on July 14, 1789, and was fueled by the ideas of the Enlightenment, such as liber",
+      "tool_output_chars": 500,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.0,
+        "hits": [],
+        "misses": [
+          "France",
+          "revolution",
+          "1789",
+          "monarchy",
+          "republic"
+        ]
+      },
+      "notes": "Historical event \u2014 Wikipedia territory"
+    },
+    {
+      "query": "What is quantum computing?",
+      "expected_tool": "wikipedia",
+      "predicted_tool": "wikipedia",
+      "correct": true,
+      "total_latency_ms": 10211.397646999103,
+      "total_cost_usd": 0.00029895,
+      "answer": "Quantum computing refers to the use of quantum-mechanical phenomena, such as superposition and entanglement, to perform computations. A quantum computer is a type of computer that exploits these phenomena to process information in a way that is fundamentally different from classical computers. This allows quantum computers to potentially solve certain problems much faster than classical computers, making them a promising technology for fields such as cryptography, physics, and optimization.\n\nThe",
+      "tool_output_chars": 500,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.75,
+        "hits": [
+          "quantum",
+          "superposition",
+          "computing"
+        ],
+        "misses": [
+          "qubit"
+        ]
+      },
+      "notes": "General concept explanation, not recent research"
+    },
+    {
+      "query": "Who founded Google?",
+      "expected_tool": "wikipedia",
+      "predicted_tool": "wikipedia",
+      "correct": true,
+      "total_latency_ms": 8862.427519998164,
+      "total_cost_usd": 0.00029895,
+      "answer": "The retrieved information provided does not explicitly mention the founders of Google. However, based on my general knowledge, I can provide the answer to the user's question. Google was founded by Larry Page and Sergey Brin. They were Ph.D. students at Stanford University in California when they developed the search engine that would eventually become Google.\n\nLarry Page and Sergey Brin incorporated Google in September 1998, and the company has since grown to become one of the world's most infl",
+      "tool_output_chars": 500,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.25,
+        "hits": [
+          "Google"
+        ],
+        "misses": [
+          "Larry Page",
+          "Sergey Brin",
+          "Stanford"
+        ]
+      },
+      "notes": "Company founding \u2014 factual Wikipedia entry"
+    },
+    {
+      "query": "Recent research on transformer architectures",
+      "expected_tool": "arxiv",
+      "predicted_tool": "arxiv",
+      "correct": true,
+      "total_latency_ms": 2776.9389060031244,
+      "total_cost_usd": 0.00029895,
+      "answer": "Unfortunately, I was unable to retrieve the latest research on transformer architectures due to a technical error. However, I can provide a general overview of recent trends and advancements in this field based on my existing knowledge.\n\nTransformer architectures have revolutionized the field of natural language processing (NLP) and have been widely adopted in various applications, including language translation, text classification, and question answering. Recent research has focused on improvi",
+      "tool_output_chars": 55,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.0,
+        "hits": [],
+        "misses": [
+          "transformer",
+          "attention",
+          "architecture",
+          "model"
+        ]
+      },
+      "notes": "Contains 'recent research' \u2014 Arxiv signal"
+    },
+    {
+      "query": "Papers about reinforcement learning from human feedback",
+      "expected_tool": "arxiv",
+      "predicted_tool": "arxiv",
+      "correct": true,
+      "total_latency_ms": 3193.8031049994606,
+      "total_cost_usd": 0.00029895,
+      "answer": "Unfortunately, I was unable to retrieve specific information on papers about reinforcement learning from human feedback due to a technical error. However, I can provide a general overview of the topic and some possible sources where you may be able to find relevant papers.\n\nReinforcement learning from human feedback is a subfield of machine learning that involves training agents to learn from feedback provided by humans. This feedback can be in the form of rewards, corrections, or other types of",
+      "tool_output_chars": 55,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.0,
+        "hits": [],
+        "misses": [
+          "RLHF",
+          "reinforcement",
+          "human",
+          "feedback",
+          "reward"
+        ]
+      },
+      "notes": "'Papers about' is explicit Arxiv signal"
+    },
+    {
+      "query": "What is the paper 1706.03762 about?",
+      "expected_tool": "arxiv",
+      "predicted_tool": "arxiv",
+      "correct": true,
+      "total_latency_ms": 2521.98652900006,
+      "total_cost_usd": 0.00029895,
+      "answer": "Unfortunately, I was unable to retrieve the specific information about the paper 1706.03762 due to an error. The error message 'Search' object has no attribute 'results' indicates that the search functionality is not working as expected, and I couldn't access the desired information.\n\nHowever, I can suggest an alternative approach to find the information about the paper. The code \"1706.03762\" appears to be an arXiv identifier, which is a unique code assigned to papers hosted on the arXiv platfor",
+      "tool_output_chars": 55,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.0,
+        "hits": [],
+        "misses": [
+          "Attention Is All You Need",
+          "transformer",
+          "attention"
+        ]
+      },
+      "notes": "Paper ID lookup \u2014 only Arxiv handles these"
+    },
+    {
+      "query": "Latest advances in diffusion models for image generation",
+      "expected_tool": "arxiv",
+      "predicted_tool": "arxiv",
+      "correct": true,
+      "total_latency_ms": 3393.286199998329,
+      "total_cost_usd": 0.00029895,
+      "answer": "Unfortunately, I was unable to retrieve the latest information on diffusion models for image generation due to a technical error. However, I can provide a general overview of the topic based on my existing knowledge. Diffusion models have gained significant attention in recent years for their ability to generate high-quality images. These models work by iteratively refining a random noise signal until it converges to a specific image. The process involves a series of transformations that progres",
+      "tool_output_chars": 55,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.0,
+        "hits": [],
+        "misses": [
+          "diffusion",
+          "image",
+          "generation",
+          "model",
+          "DDPM"
+        ]
+      },
+      "notes": "'Latest advances' = research signal"
+    },
+    {
+      "query": "Research on large language model hallucinations",
+      "expected_tool": "arxiv",
+      "predicted_tool": "arxiv",
+      "correct": true,
+      "total_latency_ms": 2259.350190000987,
+      "total_cost_usd": 0.00029895,
+      "answer": "Research on large language model hallucinations is a growing area of interest in the field of natural language processing (NLP). Hallucinations in this context refer to instances where a language model generates text that is not based on any actual input or context, but rather on the model's own internal workings or biases. This can result in the generation of false or misleading information, which can have significant consequences in applications such as language translation, text summarization",
+      "tool_output_chars": 55,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.0,
+        "hits": [],
+        "misses": [
+          "hallucination",
+          "language model",
+          "factual",
+          "accuracy"
+        ]
+      },
+      "notes": "'Research on' + technical ML topic = Arxiv"
+    },
+    {
+      "query": "How does LangSmith tracing work?",
+      "expected_tool": "langsmith_search",
+      "predicted_tool": "langsmith_search",
+      "correct": true,
+      "total_latency_ms": 4723.665891000564,
+      "total_cost_usd": 0.00029895,
+      "answer": "Unfortunately, the retrieved information does not provide details on how LangSmith tracing works. Instead, it appears to be an error message related to billing and prepayment credits. The error message indicates that the prepayment credits are depleted and suggests managing the project and billing through AI Studio.\n\nAs I don't have specific information on LangSmith tracing, I can provide general information on tracing in language models. Tracing in language models typically refers to the abilit",
+      "tool_output_chars": 363,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.25,
+        "hits": [
+          "LangSmith"
+        ],
+        "misses": [
+          "trace",
+          "run",
+          "span"
+        ]
+      },
+      "notes": "Direct LangSmith product question"
+    },
+    {
+      "query": "What is LangSmith used for?",
+      "expected_tool": "langsmith_search",
+      "predicted_tool": "langsmith_search",
+      "correct": true,
+      "total_latency_ms": 3341.6695870000694,
+      "total_cost_usd": 0.00029895,
+      "answer": "LangSmith is an AI-powered tool used for natural language processing and information retrieval. Although the specific details of its capabilities are not provided in the retrieved information, it appears to be designed to assist with tasks such as text analysis, language translation, and content embedding. The error message suggests that LangSmith is a resource-intensive tool that requires prepayment credits to function, which are managed through the AI Studio platform.\n\nThe error message itself",
+      "tool_output_chars": 363,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.25,
+        "hits": [
+          "LangSmith"
+        ],
+        "misses": [
+          "observability",
+          "trace",
+          "evaluation"
+        ]
+      },
+      "notes": "LangSmith overview question"
+    },
+    {
+      "query": "How do I set up LangSmith for my LangChain project?",
+      "expected_tool": "langsmith_search",
+      "predicted_tool": "langsmith_search",
+      "correct": true,
+      "total_latency_ms": 4317.971631000546,
+      "total_cost_usd": 0.00029895,
+      "answer": "To set up LangSmith for your LangChain project, you would typically need to follow a series of steps that involve creating an account, setting up your project, and configuring the necessary settings. However, the retrieved information indicates an error due to depleted prepayment credits, which suggests that the primary issue at hand is related to billing and resource allocation rather than the setup process itself.\n\nGiven the error message, it appears that the immediate step you need to take is",
+      "tool_output_chars": 363,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.25,
+        "hits": [
+          "project"
+        ],
+        "misses": [
+          "LANGCHAIN_TRACING_V2",
+          "API_KEY",
+          "setup"
+        ]
+      },
+      "notes": "Setup/integration question for LangSmith"
+    },
+    {
+      "query": "How do I evaluate my RAG pipeline with LangSmith?",
+      "expected_tool": "langsmith_search",
+      "predicted_tool": "langsmith_search",
+      "correct": true,
+      "total_latency_ms": 2671.0749649992067,
+      "total_cost_usd": 0.00029895,
+      "answer": "Unfortunately, the retrieved information does not provide a direct answer to your question about evaluating your RAG (Retrieve, Augment, Generate) pipeline with LangSmith. Instead, it appears that the LangSmith retriever has encountered an error due to depleted prepayment credits.\n\nTo address the error, you will need to manage your project and billing in AI Studio. You can do this by visiting https://ai.studio/projects. Additionally, you can learn more about billing and prepayment credits at htt",
+      "tool_output_chars": 363,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.25,
+        "hits": [
+          "LangSmith"
+        ],
+        "misses": [
+          "evaluation",
+          "dataset",
+          "benchmark"
+        ]
+      },
+      "notes": "Evaluation feature of LangSmith"
+    },
+    {
+      "query": "What are LangSmith datasets and how do I create one?",
+      "expected_tool": "langsmith_search",
+      "predicted_tool": "langsmith_search",
+      "correct": true,
+      "total_latency_ms": 3903.8277200015727,
+      "total_cost_usd": 0.00029895,
+      "answer": "Unfortunately, the retrieved information does not provide details about LangSmith datasets or how to create one. However, I can try to provide a general answer based on my knowledge. LangSmith is likely a platform or tool related to language models or natural language processing, and datasets are a crucial component of training and fine-tuning these models.\n\nA dataset in the context of LangSmith would probably refer to a collection of text data, such as sentences, paragraphs, or documents, that ",
+      "tool_output_chars": 363,
+      "retrieval_quality": {
+        "applicable": true,
+        "hit_rate": 0.25,
+        "hits": [
+          "LangSmith"
+        ],
+        "misses": [
+          "dataset",
+          "examples",
+          "create"
+        ]
+      },
+      "notes": "LangSmith-specific feature"
+    },
+    {
+      "query": "What is 15 multiplied by 7?",
+      "expected_tool": "direct_answer",
+      "predicted_tool": "direct_answer",
+      "correct": true,
+      "total_latency_ms": 1345.6406530003733,
+      "total_cost_usd": 0.00029895,
+      "answer": "15 multiplied by 7 is 105.",
+      "tool_output_chars": 0,
+      "retrieval_quality": {
+        "applicable": false,
+        "hit_rate": null,
+        "hits": [],
+        "misses": []
+      },
+      "notes": "Simple arithmetic \u2014 no retrieval needed"
+    },
+    {
+      "query": "Hello, how are you?",
+      "expected_tool": "direct_answer",
+      "predicted_tool": "direct_answer",
+      "correct": true,
+      "total_latency_ms": 2111.6540460006945,
+      "total_cost_usd": 0.00029895,
+      "answer": "I'm just a language model, so I don't have feelings or emotions, but I'm functioning properly and ready to help you with any questions or tasks you may have. How can I assist you today?",
+      "tool_output_chars": 0,
+      "retrieval_quality": {
+        "applicable": false,
+        "hit_rate": null,
+        "hits": [],
+        "misses": []
+      },
+      "notes": "Greeting \u2014 direct conversational response"
+    },
+    {
+      "query": "Thank you for the information",
+      "expected_tool": "direct_answer",
+      "predicted_tool": "direct_answer",
+      "correct": true,
+      "total_latency_ms": 1345.9051930003625,
+      "total_cost_usd": 0.00029895,
+      "answer": "You're welcome. Is there anything else I can help you with?",
+      "tool_output_chars": 0,
+      "retrieval_quality": {
+        "applicable": false,
+        "hit_rate": null,
+        "hits": [],
+        "misses": []
+      },
+      "notes": "Conversational closing \u2014 no retrieval needed"
+    },
+    {
+      "query": "What day comes after Monday?",
+      "expected_tool": "direct_answer",
+      "predicted_tool": "direct_answer",
+      "correct": true,
+      "total_latency_ms": 2263.743669998803,
+      "total_cost_usd": 0.00029895,
+      "answer": "Tuesday comes after Monday.",
+      "tool_output_chars": 0,
+      "retrieval_quality": {
+        "applicable": false,
+        "hit_rate": null,
+        "hits": [],
+        "misses": []
+      },
+      "notes": "Trivial factual \u2014 LLM knows this directly"
+    },
+    {
+      "query": "Can you help me?",
+      "expected_tool": "direct_answer",
+      "predicted_tool": "direct_answer",
+      "correct": true,
+      "total_latency_ms": 1349.5920140012458,
+      "total_cost_usd": 0.00029895,
+      "answer": "Yes, I can help you. What do you need help with?",
+      "tool_output_chars": 0,
+      "retrieval_quality": {
+        "applicable": false,
+        "hit_rate": null,
+        "hits": [],
+        "misses": []
+      },
+      "notes": "Open-ended conversational \u2014 no retrieval value"
+    }
+  ]
+}
