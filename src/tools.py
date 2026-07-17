@@ -4,6 +4,9 @@ Each tool is a standard LangChain Tool object, ready to call by name.
 """
 import os
 import arxiv as arxiv_lib
+import requests
+import xml.etree.ElementTree as ET
+import wikipedia
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
 from langchain_community.document_loaders import WebBaseLoader
@@ -14,6 +17,9 @@ from langchain_core.tools import Tool
 
 # Local config (only imports embeddings, avoids re-initializing LLM)
 from config import EMBEDDINGS
+
+# Configure user agent globally for the wikipedia library to prevent 403 Forbidden errors
+wikipedia.set_user_agent("MultiSourceRAG/1.0 (contact@example.com)")
 
 # ─────────────────────────────────────────────
 # 1. Wikipedia Tool
@@ -28,26 +34,71 @@ wikipedia_tool.description = (
 )
 
 # ─────────────────────────────────────────────
-# 2. Arxiv Tool (using new arxiv.Client() API)
+# 2. Arxiv Tool (using a robust HTTP request with a 10-second timeout)
 # ─────────────────────────────────────────────
 def _arxiv_search(query: str) -> str:
-    """Search Arxiv using the new Client-based API (arxiv>=2.1)."""
+    """Search Arxiv using direct HTTP request with a timeout and XML parsing."""
     try:
-        client = arxiv_lib.Client()
-        search = arxiv_lib.Search(query=query, max_results=3)
-        results = list(client.results(search))
-        if not results:
+        url = "https://export.arxiv.org/api/query"
+        params = {
+            "search_query": query,
+            "max_results": 3,
+            "sortBy": "relevance",
+            "sortOrder": "descending"
+        }
+        headers = {
+            "User-Agent": "MultiSourceRAG/1.0 (contact@example.com)"
+        }
+        # Strict 10-second timeout to prevent indefinite hangs
+        response = requests.get(url, params=params, headers=headers, timeout=10.0)
+        
+        if response.status_code != 200:
+            return f"Arxiv search error: HTTP {response.status_code}. Arxiv API may be rate-limited or temporarily down."
+            
+        root = ET.fromstring(response.content)
+        ns = {"atom": "http://www.w3.org/2005/Atom"}
+        
+        entries = root.findall("atom:entry", ns)
+        if not entries:
             return "No Arxiv papers found for this query."
+            
         parts = []
-        for r in results:
+        for entry in entries:
+            title_node = entry.find("atom:title", ns)
+            title = title_node.text.strip() if title_node is not None else "Untitled"
+            title = " ".join(title.split())
+            
+            published_node = entry.find("atom:published", ns)
+            published = "Unknown"
+            if published_node is not None and published_node.text:
+                published = published_node.text[:10]  # Format: YYYY-MM-DD
+                
+            summary_node = entry.find("atom:summary", ns)
+            summary = summary_node.text.strip() if summary_node is not None else ""
+            summary = " ".join(summary.split())
+            if len(summary) > 400:
+                summary = summary[:400] + "..."
+                
+            id_node = entry.find("atom:id", ns)
+            entry_id = id_node.text.strip() if id_node is not None else ""
+            
+            authors = []
+            for author_node in entry.findall("atom:author", ns):
+                name_node = author_node.find("atom:name", ns)
+                if name_node is not None and name_node.text:
+                    authors.append(name_node.text.strip())
+            authors_str = ", ".join(authors[:3])
+            
             parts.append(
-                f"Title: {r.title}\n"
-                f"Authors: {', '.join(a.name for a in r.authors[:3])}\n"
-                f"Published: {r.published.strftime('%Y-%m-%d')}\n"
-                f"Summary: {r.summary[:400]}\n"
-                f"URL: {r.entry_id}"
+                f"Title: {title}\n"
+                f"Authors: {authors_str}\n"
+                f"Published: {published}\n"
+                f"Summary: {summary}\n"
+                f"URL: {entry_id}"
             )
         return "\n\n---\n\n".join(parts)
+    except requests.exceptions.Timeout:
+        return "Arxiv search error: request timed out. Arxiv API is currently slow or unresponsive."
     except Exception as e:
         return f"Arxiv search error: {e}"
 
